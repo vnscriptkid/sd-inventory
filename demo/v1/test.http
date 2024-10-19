@@ -1,0 +1,15 @@
+### Inventory Snapshot 1: Before initial events
+curl "http://localhost:8080/inventory_snapshot?at=2023-10-01T15:08:59Z"
+
+### Inventory Snapshot 2: After initial events
+curl "http://localhost:8080/inventory_snapshot?at=2023-10-01T15:10:00Z"
+
+### Place Hold
+curl -X POST -H "Content-Type: application/json" -d '{"item_id": "ABC123", "warehouse_id": "WH1", "amount": 5}' http://localhost:8080/place_hold
+
+### Execute Hold
+curl -X POST -H "Content-Type: application/json" -d '{"item_id": "ABC123", "warehouse_id": "WH1", "hold_id": "8b05213e-5372-4d1a-8bb0-3870ab816f42"}' http://localhost:8080/execute_hold
+
+
+### Inventory Snapshot 3: After execute hold
+curl "http://localhost:8080/inventory_snapshot?at=2025-10-01T15:10:00Z"
